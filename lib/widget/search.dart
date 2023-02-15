@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:addstudentpro/DB/funtions/funtions.dart';
 import 'package:addstudentpro/widget/informationst.dart';
 import 'package:addstudentpro/widget/listst.dart';
@@ -43,7 +42,7 @@ class SearchBarWidget extends SearchDelegate {
               children: [
                 ListTile(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context, 
                       MaterialPageRoute(
                         builder: 
@@ -53,12 +52,13 @@ class SearchBarWidget extends SearchDelegate {
                   leading: CircleAvatar(
                     backgroundImage: FileImage(File(data.photo)),
                   ),
+                  title: Text(data.name),
                 ),
                 const Divider()
               ],
             );
           } else {
-            
+            return const Text('');
           }
         },  
         itemCount: studentlist.length);
@@ -88,11 +88,17 @@ class SearchBarWidget extends SearchDelegate {
                             place: data.place, 
                             photo: data.photo),));
                     },
+                  leading: CircleAvatar(
+                    backgroundImage: FileImage(File(data.photo)),
+                    radius: 30,
                   ),
+                  title: Text(data.name),
+                  ),
+                  const Divider()
                 ],
               );
             } else {
-              
+              return const Text('');
             }
           }, 
           itemCount: studentlist.length,

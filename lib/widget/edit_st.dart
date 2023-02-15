@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:addstudentpro/DB/funtions/funtions.dart';
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../DB/model/model.dart';
 
 class EditStudent extends StatefulWidget {
@@ -32,13 +32,13 @@ class _EditStudentState extends State<EditStudent> {
   TextEditingController agecontroller = TextEditingController();
   TextEditingController placecontroller = TextEditingController();
   TextEditingController numbercontroller = TextEditingController();
+  bool image = true;
 
   final _formkey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-
     namecontroller = TextEditingController(text: widget.name);
     agecontroller = TextEditingController(text: widget.age);
     placecontroller = TextEditingController(text: widget.place);
@@ -59,7 +59,7 @@ class _EditStudentState extends State<EditStudent> {
                 padding: const EdgeInsets.all(25.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     const Text(
@@ -69,17 +69,28 @@ class _EditStudentState extends State<EditStudent> {
                     const SizedBox(
                       height: 20,
                     ),
-                    CircleAvatar(
+                    image == true
+                    ?CircleAvatar(
                       radius: 80,
                       backgroundImage: FileImage(
                         File(widget.image),
                       ),
+                    )
+                    :CircleAvatar(
+                      backgroundImage: FileImage(
+                        File(
+                          _photo!.path,
+                        ),
+                      ),
+                      radius: 60,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton.icon(
-                      onPressed: (){}, 
+                      onPressed: (){
+                        onChangeImage();
+                      }, 
                     icon: const Icon(Icons.image), 
                     label: const Text('Change Image'),
                     ),
@@ -184,13 +195,28 @@ class _EditStudentState extends State<EditStudent> {
     );
   }
 
+ File? _photo;
+  Future<void> onChangeImage() async {
+    final photo = await ImagePicker().pickImage(
+      source: ImageSource.gallery);
+    if (photo == null) {
+      return;
+    } else {
+      final phototemp = File(photo.path);
+      setState(() {
+        _photo = phototemp;
+        image = false;
+      });
+    }
+  }
+
   Future<void> onEditSaveButton(ctx) async {
     final studentmodel = StudentModel(
       name: namecontroller.text,
       age: agecontroller.text,
       mobile: numbercontroller.text,
       place: placecontroller.text,
-      photo: widget.image,
+      photo: _photo!.path,
     );
 
     ScaffoldMessenger.of(context).showSnackBar(

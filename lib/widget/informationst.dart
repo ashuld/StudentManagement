@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:addstudentpro/widget/edit_st.dart';
 import 'package:flutter/material.dart';
 
 class Studentinformation extends StatelessWidget {
@@ -23,7 +24,9 @@ class Studentinformation extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Text(' Student Information')),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+          IconButton(
+            onPressed: () {}, 
+            icon: const Icon(Icons.more_vert))
         ],
       ),
       body: SafeArea(

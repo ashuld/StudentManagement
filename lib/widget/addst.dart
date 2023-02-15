@@ -113,7 +113,7 @@ class _AddStudentWidgetState extends State<AddStudentWidget> {
                       onbuttonclick();
                       Navigator.of(context).pop();
                     } else {
-                      imageAlert = true;
+                      imageSnackbar();
                     }
                   }),
                   icon: const Icon(Icons.add),
@@ -135,20 +135,22 @@ class _AddStudentWidgetState extends State<AddStudentWidget> {
     final age = agecontroll.text.trim();
     final mobile = phonecontroll.text.trim();
     final place = placecontroll.text.trim();
-
     if (_photo!.path.isEmpty ||
         name.isEmpty ||
         age.isEmpty ||
         mobile.isEmpty ||
-        place.isEmpty) {
-      return;
+        place.isEmpty
+        ) {
+      return showSnackbarMessage();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.indigo,
           behavior: SnackBarBehavior.floating,
           content: Text(
             'Student added',
-            style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
+            style: TextStyle(
+              fontStyle: FontStyle.italic, 
+              color: Colors.white),
           )));
     }
 
@@ -163,9 +165,35 @@ class _AddStudentWidgetState extends State<AddStudentWidget> {
     addstudent(students);
   }
 
+  Future<void> showSnackbarMessage() async{
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.indigo,
+      content: Text('Details Required',
+      style: TextStyle(
+        color: Colors.white
+      ),),
+      ),
+      );
+  }
+
+  Future<void> imageSnackbar() async {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.indigo,
+      content: Text('Add Image',
+      style: TextStyle(
+        color: Colors.white
+      ),
+      ),
+      )
+      );
+  }
+
   File? _photo;
   Future<void> getPhoto() async {
-    final photo = await ImagePicker().getImage(source: ImageSource.gallery);
+    final photo = await ImagePicker().pickImage(
+      source: ImageSource.gallery);
     if (photo == null) {
       return;
     } else {
