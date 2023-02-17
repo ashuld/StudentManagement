@@ -59,7 +59,6 @@ class _AddStudentWidgetState extends State<AddStudentWidget> {
               ),
               TextFormField(
                 controller: namecontroll,
-                maxLength: 10,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -97,7 +96,6 @@ class _AddStudentWidgetState extends State<AddStudentWidget> {
               ),
               TextFormField(
                 controller: placecontroll,
-                maxLength: 15,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),

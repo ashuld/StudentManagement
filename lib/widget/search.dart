@@ -37,7 +37,7 @@ class SearchBarWidget extends SearchDelegate {
       return ListView.builder(
         itemBuilder: (context, index) {
           final data = studentlist[index];
-          if (data.name.toLowerCase().contains(query.toLowerCase())) {
+          if (data.name.contains(query)) {
             return Column(
               children: [
                 ListTile(

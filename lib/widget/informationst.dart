@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:addstudentpro/widget/edit_st.dart';
 import 'package:flutter/material.dart';
 
 class Studentinformation extends StatelessWidget {
