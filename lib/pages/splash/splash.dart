@@ -1,4 +1,4 @@
-import 'package:database_flutter/screen/home/home.dart';
+import 'package:database_flutter/pages/home/home.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

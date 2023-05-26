@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:database_flutter/db/function/db_functions.dart';
 import 'package:database_flutter/db/model/data_model.dart';
-import 'package:database_flutter/widgets/std_details.dart';
+import 'package:database_flutter/pages/details/std_details.dart';
 import 'package:flutter/material.dart';
 
 class SearchStudent extends SearchDelegate {

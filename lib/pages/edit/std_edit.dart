@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:database_flutter/screen/home/home.dart';
+import 'package:database_flutter/pages/home/home.dart';
 import 'package:flutter/material.dart';
 
-import '../db/function/db_functions.dart';
-import '../db/model/data_model.dart';
+import '../../db/function/db_functions.dart';
+import '../../db/model/data_model.dart';
 
 // ignore: must_be_immutable
 class EditStudents extends StatefulWidget {
@@ -29,11 +29,8 @@ class EditStudents extends StatefulWidget {
 
 class _EditStudentsState extends State<EditStudents> {
   TextEditingController nameController = TextEditingController();
-
   TextEditingController ageCOntroller = TextEditingController();
-
   TextEditingController placeCOntroller = TextEditingController();
-
   TextEditingController phoneNumberCOntroller = TextEditingController();
 
   bool image = true;
@@ -50,13 +47,19 @@ class _EditStudentsState extends State<EditStudents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
         backgroundColor: Colors.white,
-        title: const Text('Edit Screen',style: TextStyle(
-          color: Colors.black
-        ),),
+        title: const Text(
+          'Edit Screen',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -160,7 +163,7 @@ class _EditStudentsState extends State<EditStudents> {
 
   Future<void> onEditButtonClicked() async {
     final studentmodel = StudentModel(
-         photo: _photo == null ? widget.image : _photo!.path,
+        photo: _photo == null ? widget.image : _photo!.path,
         name: nameController.text.trim(),
         age: ageCOntroller.text.trim(),
         phonenumber: phoneNumberCOntroller.text.trim(),
@@ -176,7 +179,7 @@ class _EditStudentsState extends State<EditStudents> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
-          margin:const EdgeInsets.all(30),
+          margin: const EdgeInsets.all(30),
           content: Text('${nameController.text} Updated'),
         ),
       );

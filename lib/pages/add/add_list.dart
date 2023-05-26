@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:database_flutter/core/color/color.dart';
+import 'package:database_flutter/core/constants/widgets.dart';
 import 'package:database_flutter/db/function/db_functions.dart';
 import 'package:database_flutter/db/model/data_model.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +17,16 @@ class AddStudents extends StatefulWidget {
 
 class _AddStudentsState extends State<AddStudents> {
   TextEditingController nameController = TextEditingController();
-
   TextEditingController ageCOntroller = TextEditingController();
-
   TextEditingController placeCOntroller = TextEditingController();
-
   TextEditingController phoneNumberCOntroller = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -33,10 +34,10 @@ class _AddStudentsState extends State<AddStudents> {
             },
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: black,
             )),
-        backgroundColor: Colors.white,
-        title: const Text('Add Details', style: TextStyle(color: Colors.black)),
+        backgroundColor: white,
+        title: const Text('Add Details', style: TextStyle(color: black)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -60,9 +61,7 @@ class _AddStudentsState extends State<AddStudents> {
                               File(userphoto!.path),
                             ),
                           )),
-                const SizedBox(
-                  height: 10,
-                ),
+                box10(),
                 ElevatedButton.icon(
                   onPressed: () {
                     getPhoto();
@@ -70,9 +69,7 @@ class _AddStudentsState extends State<AddStudents> {
                   icon: const Icon(Icons.image),
                   label: const Text('Add Image'),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                box10(),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: nameController,
@@ -90,9 +87,7 @@ class _AddStudentsState extends State<AddStudents> {
                     return null;
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                box20(),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: ageCOntroller,
@@ -112,9 +107,7 @@ class _AddStudentsState extends State<AddStudents> {
                     return null;
                   },
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                box10(),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: phoneNumberCOntroller,
@@ -136,9 +129,7 @@ class _AddStudentsState extends State<AddStudents> {
                     return null;
                   },
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                box10(),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: placeCOntroller,
@@ -157,9 +148,7 @@ class _AddStudentsState extends State<AddStudents> {
                     return null;
                   },
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                box10(),
                 ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -177,7 +166,7 @@ class _AddStudentsState extends State<AddStudents> {
                       }
                     }
                   },
-                  child: const Text('submit'),
+                  child: const Text('Submit'),
                 ),
               ],
             ),
@@ -204,10 +193,8 @@ class _AddStudentsState extends State<AddStudents> {
   }
 
   File? userphoto;
-
   Future<void> getPhoto() async {
     final photo = await ImagePicker().pickImage(source: ImageSource.camera);
-
     if (photo == null) {
       return;
     } else {

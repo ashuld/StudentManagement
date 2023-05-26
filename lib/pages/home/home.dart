@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'package:database_flutter/widgets/add_list.dart';
-import 'package:database_flutter/widgets/std_details.dart';
-import 'package:database_flutter/widgets/std_edit.dart';
-import 'package:database_flutter/widgets/search.dart';
+import 'package:database_flutter/core/color/color.dart';
+import 'package:database_flutter/pages/add/add_list.dart';
+import 'package:database_flutter/pages/details/std_details.dart';
+import 'package:database_flutter/pages/edit/std_edit.dart';
+import 'package:database_flutter/pages/search/search.dart';
 import 'package:flutter/material.dart';
 import '../../db/function/db_functions.dart';
 import '../../db/model/data_model.dart';
@@ -14,18 +15,22 @@ class ScreenHome extends StatelessWidget {
   Widget build(BuildContext context) {
     getAllStudents();
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text(
           'Home',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: black),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: white,
         actions: [
           IconButton(
             onPressed: () {
               showSearch(context: context, delegate: SearchStudent());
             },
-            icon: const Icon(Icons.search,color: Colors.black,),
+            icon: const Icon(
+              Icons.search,
+              color: black,
+            ),
           ),
         ],
       ),
@@ -77,7 +82,10 @@ class ScreenHome extends StatelessWidget {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.edit),
+                        icon: const Icon(
+                          Icons.edit,
+                          color: black,
+                        ),
                       ),
                       IconButton(
                         onPressed: () {
@@ -85,14 +93,14 @@ class ScreenHome extends StatelessWidget {
                             context: ctx,
                             builder: (ctx1) {
                               return AlertDialog(
-                                backgroundColor: Colors.white,
+                                backgroundColor: white,
                                 title: const Text(
                                   'Are You Sure',
-                                  style: TextStyle(color: Colors.black),
+                                  style: TextStyle(color: black),
                                 ),
                                 content: Text(
                                   'Delete ${data.name.toUpperCase()} ?',
-                                  style: const TextStyle(color: Colors.black),
+                                  style: const TextStyle(color: black),
                                 ),
                                 actions: [
                                   TextButton(
@@ -102,7 +110,7 @@ class ScreenHome extends StatelessWidget {
                                     },
                                     child: const Text(
                                       'Yes',
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: black),
                                     ),
                                   ),
                                   TextButton(
@@ -111,7 +119,7 @@ class ScreenHome extends StatelessWidget {
                                     },
                                     child: const Text(
                                       'No..',
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(color: black),
                                     ),
                                   ),
                                 ],
@@ -119,7 +127,10 @@ class ScreenHome extends StatelessWidget {
                             },
                           );
                         },
-                        icon: const Icon(Icons.delete),
+                        icon: const Icon(
+                          Icons.delete,
+                          color: black,
+                        ),
                       ),
                     ],
                   ),

@@ -1,8 +1,7 @@
-import 'package:database_flutter/screen/splash/splash.dart';
+import 'package:database_flutter/core/color/color.dart';
+import 'package:database_flutter/pages/splash/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
-
 import 'db/model/data_model.dart';
 
 Future<void> main() async {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           primarySwatch: Colors.purple,
-          fontFamily: GoogleFonts.inder().fontFamily),
+          fontFamily: inder),
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
     );
